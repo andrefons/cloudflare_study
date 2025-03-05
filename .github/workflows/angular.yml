@@ -21,9 +21,6 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-
       - name: Setup Node.js ${{matrix.node-version}}
         uses: actions/setup-node@v3
         with:
@@ -38,7 +35,12 @@ jobs:
       ##  run: npm run test:ci
 
       - name: Build
-        run: npm run build
+        run: npm run build 
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
         
   deploy:
     environment:
